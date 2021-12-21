@@ -1,4 +1,4 @@
-function [P1,f]= myfft(data,Fs)
+function [P1,f]= myfft1(data,Fs)
   
 
 Y=fft(data);
