@@ -33,10 +33,18 @@ clc;
  figure
  subplot(2,1,1);
  plot(uPhF1-uPhF2); 
-title('Phase between n1 and p1');
+title('Phase diff between n1 and p1');
  subplot(2,1,2);
  plot(uPhS1-uPhS2); 
-title('Phase between n2 and p2');
+title('Phase diff between n2 and p2');
+%
+figure
+ subplot(2,1,1);
+ plot(uPhF1-uPhS1); 
+title('Phase diff between n1 and n2');
+ subplot(2,1,2);
+ plot(uPhF2-uPhS2); 
+title('Phase diff between p1 and p2');
 % 
  figure
  hold on;
@@ -52,6 +60,23 @@ title('Phase between n1 and p1');
  plot(PhS1(1:100), 'r');
  plot(PhS2(1:100), 'k');
 title('Phase between n2 and p2');
+ hold off
+%
+rHF1 = real(HF1);
+ figure
+ hold on
+ %plot(F1(1:100))
+ plot(PhF1(1:100), 'r');
+ plot(PhS1(1:100), 'k');
+title('Phase between n1 and n2');
+ hold off
+%
+ figure
+ hold on
+ %plot(F1(1:100))
+ plot(PhF2(1:100), 'r');
+ plot(PhS2(1:100), 'k');
+title('Phase between p1 and p2');
  hold off
 %
 [wcoh, wcs, f] = wcoherence(S2, F2, fs);

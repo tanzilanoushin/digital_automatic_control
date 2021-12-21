@@ -2,11 +2,10 @@ clear all;
 close all;
 clc;
 
- F1 = load("n1.txt");
- F2 = load("p1.txt");
- S1 = load("n2.txt");
- S2 = load("p2.txt");
-  fs = 1;
+ F1 = load("first_trial1-1.txt");
+ F2 = load("first_trial2-1.txt");
+ S1 = load("second_trial1-1.txt");
+ S2 = load("second_trial2.txt");
 % 
  F1 = F1(1:8000);
  F2 = F2(1:8000);
@@ -33,16 +32,13 @@ clc;
  figure
  subplot(2,1,1);
  plot(uPhF1-uPhF2); 
-title('Phase between n1 and p1');
  subplot(2,1,2);
  plot(uPhS1-uPhS2); 
-title('Phase between n2 and p2');
 % 
  figure
  hold on;
  plot(PhF1(1:100),'b');
  plot(PhF2(1:100), 'g');
-title('Phase between n1 and p1');
  hold off;
 % 
  rHF1 = real(HF1);
@@ -51,24 +47,10 @@ title('Phase between n1 and p1');
  %plot(F1(1:100))
  plot(PhS1(1:100), 'r');
  plot(PhS2(1:100), 'k');
-title('Phase between n2 and p2');
  hold off
-%
-[wcoh, wcs, f] = wcoherence(S2, F2, fs);
-max_wcoh_t = max(wcoh);
-figure();
-hold on;
-plot(max_wcoh_t);
-xlabel("Time (s)");
-ylabel("Coherence");
-title("Time Maximum Coherence");
-grid on;
-hold off;
-figure()
-plot(abs(wcoh));
-xlabel("Time (s)");
-ylabel("Coherence");
-title("Time  Coherence");
+
+
+
 
 
 
