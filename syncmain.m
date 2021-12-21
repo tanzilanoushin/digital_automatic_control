@@ -3,10 +3,10 @@ clear;
 close all;
 
 K = 0.007;
-w = [0.26, 0.24, 0.27, 0.25, 0.29, 0.23, 0.3, 0.28]; %omega values
+w = [0.26, 0.24, 0.27, 0.25, 0.29, 0.23, 0.3, 0.28]; %Values of Omega
  tspan = [0,500];
     x0= [0.1; 0.2; 0.3; 0.4; 0.01; 0.02; 0.03; 0.5];
-    [t, x] = ode45(@(t,x) synccode(t,x, K, w), tspan, x0);
+    [t, x] = ode45(@(t,x) syncques2(t,x, K, w), tspan, x0);
 
 
 c = 1;
@@ -35,7 +35,7 @@ plot(t,x(:,8),'--');
 
 figure(2)
 surf(r_t);
-ylabel("nth K value");
-xlabel("nth time");
+ylabel("nth number of K");
+xlabel("nth number of time");
 zlabel("r_t");
 
