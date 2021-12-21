@@ -1,0 +1,35 @@
+% Damien Stephens
+% Midterm Part A - Problem 1
+% cannot use pwelch
+
+close all;
+clear all;
+clc;
+
+% read and store the data from sr.txt
+sr = readtable('sr.txt');
+
+% break up sr into two vectors for processing
+time = table2array(sr(:,1));
+data = table2array(sr(:,2));
+
+% lets look at the data first
+figure
+hold on
+plot(time, data)
+grid on
+title("Data from sr.txt")
+xlabel("Time (s)")
+ylabel("Physiological Signal")
+hold off
+
+% use Lomb-Scargle to find the PSD
+[p, f] = plomb(data, time, 'normalized');
+
+% plot the plomb PSD
+figure
+hold on
+plot(f, p)
+title("Lomb-Scargle PSD of sr.txt")
+grid on
+hold off

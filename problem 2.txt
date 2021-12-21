@@ -1,0 +1,31 @@
+% Damien Stephens
+% Midterm Part A - Problem 2
+
+clear all;
+close all;
+clc;
+
+% define the given angular frequencies
+w = [0.26 0.24 0.27 0.25];
+% w1 = 0.26;
+% w2 = 0.24;
+% w3 = 0.27;
+% w4 = 0.25;
+
+% K = 0;
+
+% syms theta_j theta_i
+% eqn = w + (K/4)*(sin(theta_j-theta_i));
+
+eqn = @(thetaj, thetai) w + (K/4) * ( sin(thetaj-thetai) + sin(thetaj-thetai) + sin(thetaj-thetai) + sin(thetaj-thetai) );
+
+% odes = @(K, y) [w(1) + (K/4) * (sin(y) + sin(y) + sin(y) + sin(y));
+%                 w(2) + (K/4) * (sin(y) + sin(y) + sin(y) + sin(y));
+%                 w(3) + (K/4) * (sin(y) + sin(y) + sin(y) + sin(y));
+%                 w(2) + (K/4) * (sin(y) + sin(y) + sin(y) + sin(y))]
+
+t_span = 0:0.1:200;
+% init = zeros(16);
+y0 = 0;
+% [t,y] = ode45(odes, t_span, init);
+[t,y] = ode45(eqn, t_span, init);
