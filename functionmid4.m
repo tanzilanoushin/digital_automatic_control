@@ -1,8 +1,8 @@
-function xdot=functionmid(t,x)
+function xdot=functionmid4(t,x)
 %set parameters 
 
-Kw=1.12;
-Ka=-1.12
+Kw=1.5;
+Ka=-1.5;
 
 xdot(1)= 0.26 + (Kw/2)*(sin(x(2)-x(1)))+(Ka/2)*(sin(x(3)-x(1))+sin(x(4)-x(1)));
 xdot(2)= 0.26 + (Kw/2)*(sin(x(1)-x(2)))+(Ka/2)*(sin(x(3)-x(2))+sin(x(4)-x(2)));
