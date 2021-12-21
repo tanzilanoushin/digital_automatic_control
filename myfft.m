@@ -1,9 +1,9 @@
 function [P1,f]= myfft(data,Fs)
-% setting the parameters,Sampling frequency, Length of signal,Sampling period, Time vector  
-
+ 
+ 
 Y=fft(data);
 L=length(data);
-
+ 
 f = Fs*(0:(L/2))/L;
 % Function
 P2 = abs(Y/L);
