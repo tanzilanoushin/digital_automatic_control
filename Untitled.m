@@ -1,58 +1,27 @@
-PID controller design for continuous time systems:
 clear all
 close all
 clc
-clearvars
-J = 0.01;
-b = 0.1;
-K = 0.01;
-R = 1;
-L = 0.5;
-s = tf('s');
-P_motor = K/((J*s+b)*(L*s+R)+K^2);
-% Trying Gain 100 
-Kp = 100;
-C = pid(Kp);
-%Getting closed-loop transfer function
-sys_Cl_L = feedback(C*P_motor,1);
-t = 0:0.01:5;
+f1=50;
+f2=100;
+fs=1000;
+t=0:1:100;
+S=sin(2*pi*(f1/fs)*t)+sin(2*pi*(f2/fs)*t);
+plot(S)
+m=50;
+W=[0.01 0.14];
+B=fir1(m,W);
+xf= filter(B,1,S);
+hold on
+plot(xf)
+[P ,f]=myfft(xf,fs)
 figure()
-step(sys_Cl_L,t)
-grid on 
-title('Step Response with Proportional Control')
- 
-% trying small integral(for steady state error) and dervative (overshoot)
-Kp = 75;
-Ki = 1;
-Kd = 1;
-%system second assumption
-C = pid(Kp,Ki,Kd);
-sys_ClL2 = feedback(C*P_motor,1);
+plot(f,P)
+[b,a] = butter(5,0.14)
+xf1 = filter(1,a,S);
 figure()
-step(sys_ClL2,[0:1:200])
-grid on
-title('PID Control after introduction of initial Ki and Kd')
- 
-%adjusting integral to improve steady state 
-Kp = 100;
-Ki = 200;
-Kd = 1;
-% system for third assumption
-C = pid(Kp,Ki,Kd);
-sys_ClL_3 = feedback(C*P_motor,1);
-figure()
-step(sys_ClL_3, 0:0.01:4)
-grid on
-title('PID Control with increased Ki')
-%adjusitng overshoot
-Kp = 100;
-Ki = 200;
-Kd = 10;
-C = pid(Kp,Ki,Kd);
-%system for fourth assumption
-sys_ClL_4 = feedback(C*P_motor,1);
-figure()
-step(sys_ClL_4, 0:0.01:4)
-grid on
-title('PID Control with modified Kd')
-sys_ClL_4
+plot(xf1)
+[P1,f1]=myfft(xf1,fs)
+figure
+plot(f1,P1)
+
+
