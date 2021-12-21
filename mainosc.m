@@ -14,4 +14,4 @@ tspan = [0,2000];
     [t, phase] = ode45(@(t,x) osc(t,x,K,N,Omega), tspan, xo);
     
     
-   OP = abs(mean(exp(1i*phase), 2))';
+   OP = abs(mean(exp(1i*phase), 2))'
