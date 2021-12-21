@@ -1,15 +1,12 @@
-clearvars;
-close all;
-clc;
+function xdot=functionmid(t,x)
+%set parameters of the model
 
-x0= [0.1; 0.2; 0.3; 0.4];
-tspan= [0 5];
-[t,x]=ode45('functionmid',tspan,x0);
+Kw=1.12;
+Ka=1.12
 
-plot(t,x(:,1),'r');
-hold on
-plot(t,x(:,2),'b');
-hold on
-plot(t,x(:,3),'y');
-hold on
-plot(t,x(:,4),'k');
+xdot(1)= 0.26 + (Kw/2)*(sin(x(2)-x(1)))+(ka/2)*(sin(x(3)-x(1))+sin(x(4)-x(1)));
+xdot(2)= 0.26 + (Kw/2)*(sin(x(1)-x(2)))+(ka/2)*(sin(x(3)-x(2))+sin(x(4)-x(2)));
+xdot(3)= 0.26 + (Kw/2)*(sin(x(4)-x(3)))+(ka/2)*(sin(x(1)-x(3))+sin(x(2)-x(3)));
+xdot(4)= 0.26 + (Kw/2)*(sin(x(3)-x(4)))+(ka/2)*(sin(x(1)-x(4))+sin(x(2)-x(4)));
+xdot=xdot';
+end

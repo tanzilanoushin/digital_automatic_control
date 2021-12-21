@@ -6,7 +6,7 @@ clc;
 
 x0= [randn(1,1); randn(1,1); randn(1,1); randn(1,1); randn(1,1); randn(1,1)];
 tspan= [0 200];
-N=2;
+N=4;
 [t,x]=ode45('project2_1',tspan,x0,N);
 figure(1)
 plot(t,x(:,1),'r');
@@ -34,7 +34,7 @@ A = zeros(1,N);
  
 
 
-%xdot=xdot';
+xdot=xdot';
 
 end
 
